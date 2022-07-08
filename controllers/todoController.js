@@ -40,7 +40,7 @@ exports.updateTodo = async (req, res) => {
     return;
   }
 
-  const todo = await todo.findByPk(id);
+  const todo = await Todo.findByPk(id);
 
   if (!todo) {
     res.status(400).json({

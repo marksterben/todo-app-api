@@ -9,7 +9,7 @@ const { sequelize } = require("./models");
 const app = express();
 const port = process.env.APP_PORT || 3000;
 
-app.use(cors);
+app.use(cors());
 
 app.use(router);
 
@@ -18,7 +18,9 @@ app.get("/", (req, res) => {
 });
 
 try {
-  await sequelize.authenticate();
+  (async () => {
+    await sequelize.authenticate();
+  })();
 } catch (error) {
   console.error("Unable to connect to the database:", error);
 }
