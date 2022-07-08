@@ -1,12 +1,28 @@
-import express from "express";
+require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
+
+const router = require("./routes");
+const { sequelize } = require("./models");
 
 const app = express();
-const port = 3000;
+const port = process.env.APP_PORT || 3000;
+
+app.use(cors);
+
+app.use(router);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+try {
+  await sequelize.authenticate();
+} catch (error) {
+  console.error("Unable to connect to the database:", error);
+}
+
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

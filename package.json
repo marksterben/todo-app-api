@@ -2,15 +2,17 @@
   "name": "todo-app-api",
   "version": "1.0.0",
   "description": "Todo App Api with Express.js",
-  "type": "module",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "sequelize db:migrate --config config/database.js"
   },
   "author": "Marcellino",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
