@@ -32,7 +32,7 @@ exports.updateTodo = async (req, res) => {
     body,
   } = req;
 
-  if (!body.name || !body.completed) {
+  if (!body.name) {
     res.status(400).json({
       errorMessage: "'name' and 'completed' is required",
     });
