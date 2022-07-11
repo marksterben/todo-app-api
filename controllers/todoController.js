@@ -1,7 +1,7 @@
 const { Todo } = require("../models");
 
 exports.getTodos = async (req, res) => {
-  const todos = await Todo.findAll();
+  const todos = await Todo.findAll({ order: [["id", "ASC"]] });
   res.status(200).send({
     data: todos,
   });
