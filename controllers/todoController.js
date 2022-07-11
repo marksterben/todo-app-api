@@ -80,13 +80,15 @@ exports.removeTodo = async (req, res) => {
   });
 };
 
-exports.removeAllTodos = async (req, res) => {
+exports.removeCompletedTodos = async (req, res) => {
   await Todo.destroy({
-    truncate: true,
+    where: {
+      completed: true,
+    },
   });
 
   res.status(200).json({
-    message: "All todos have been removed",
+    message: "All completed todos have been removed",
   });
 };
 

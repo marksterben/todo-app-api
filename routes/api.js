@@ -5,7 +5,7 @@ const {
   getTodos,
   removeTodo,
   updateTodo,
-  removeAllTodos,
+  removeCompletedTodos,
   checkAllTodos,
 } = require("../controllers/todoController.js");
 
@@ -16,7 +16,7 @@ const jsonParser = express.json();
 router.get("/todos", getTodos);
 router.post("/todo", jsonParser, addTodo);
 router.put("/todo/:id", jsonParser, updateTodo);
-router.delete("/todos", removeAllTodos);
+router.delete("/todos", removeCompletedTodos);
 router.delete("/todo/:id", removeTodo);
 router.get("/todos/check", checkAllTodos);
 
