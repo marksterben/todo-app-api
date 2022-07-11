@@ -5,6 +5,8 @@ const {
   getTodos,
   removeTodo,
   updateTodo,
+  removeAllTodos,
+  checkAllTodos,
 } = require("../controllers/todoController.js");
 
 const router = express.Router({ caseSensitive: true });
@@ -12,11 +14,10 @@ const router = express.Router({ caseSensitive: true });
 const jsonParser = express.json();
 
 router.get("/todos", getTodos);
-
 router.post("/todo", jsonParser, addTodo);
-
 router.put("/todo/:id", jsonParser, updateTodo);
-
+router.delete("/todos", removeAllTodos);
 router.delete("/todo/:id", removeTodo);
+router.get("/todos/check", checkAllTodos);
 
 module.exports = router;

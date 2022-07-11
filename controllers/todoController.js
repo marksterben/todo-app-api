@@ -76,6 +76,33 @@ exports.removeTodo = async (req, res) => {
   await todo.destroy();
 
   res.status(200).json({
-    message: "todo successfully removed",
+    message: "Todo successfully removed",
+  });
+};
+
+exports.removeAllTodos = async (req, res) => {
+  await Todo.destroy({
+    truncate: true,
+  });
+
+  res.status(200).json({
+    message: "All todos have been removed",
+  });
+};
+
+exports.checkAllTodos = async (req, res) => {
+  const checked = req.query.checked === "true";
+
+  await Todo.update(
+    { completed: checked },
+    {
+      where: {
+        completed: !checked,
+      },
+    }
+  );
+
+  res.status(200).json({
+    message: `All todos have been ${checked ? "checked" : "unchecked"}`,
   });
 };
