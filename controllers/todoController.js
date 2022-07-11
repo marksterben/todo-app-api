@@ -96,7 +96,7 @@ exports.removeCompletedTodos = async (req, res) => {
 exports.checkAllTodos = async (req, res) => {
   const checked = req.query.checked === "true";
 
-  await Todo.update(
+  const updated = await Todo.update(
     { completed: checked },
     {
       where: {
@@ -106,6 +106,7 @@ exports.checkAllTodos = async (req, res) => {
   );
 
   res.status(200).json({
+    count: updated[0],
     message: `All todos have been ${checked ? "checked" : "unchecked"}`,
   });
 };
